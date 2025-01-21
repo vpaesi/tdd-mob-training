@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class saudacoesTest {
 
-    // 1 - Interpolar o nome com uma saudação simples.
+    // Requisito 1 - Interpolar o nome com uma saudação simples.
     @Test
     void deveRetornarSaudacaoSimples() {
         Saudacoes saudacoes = new Saudacoes();
@@ -19,19 +19,31 @@ public class saudacoesTest {
         Saudacoes saudacoes = new Saudacoes();
         Assertions.assertEquals("Olá, você aí!", saudacoes.saudacao("Olá, ", ""));
     };
+
+    // Requisito 3 - Se o nome for gritado (em maiúsculas), retornar gritando também "OLÁ, MARIA!!!".
+    @Test
+    void deveRetornarSaudacaoGritando() {
+        Saudacoes saudacoes = new Saudacoes();
+        Assertions.assertEquals("OLÁ, MARIA!!!", saudacoes.saudacao("Olá, ", "MARIA"));
+    };
+
+    // Requisito 4 - Para entrada com dois nomes, retornar os nomes separados com "e". Por exemplo para ["Maria, "Nina"], retornar "Olá, Maria e Nina".
+    @Test
+    void deveRetornarSaudacaoComDoisNomes() {
+        Saudacoes saudacoes = new Saudacoes();
+        Assertions.assertEquals("Olá, Maria e Nina", saudacoes.saudacao("Olá, ", "Maria e Nina"));
+    };
+    
+    // Requisito 5 - Para entrada com mais de dois nomes, separar os nomes com vírgula e o último com "e".
+    @Test
+    void deveRetornarSaudacaoComMaisDeDoisNomes() {
+        Saudacoes saudacoes = new Saudacoes();
+        Assertions.assertEquals("Olá, Maria, Nina e Lúcia", saudacoes.saudacao("Olá, ", "Maria, Nina, Lúcia"));
+    };
 };
-// Requisito 3 - Se o nome for gritado (em maiúsculas), retornar gritando também "OLÁ, MARIA!!!".
 
-// Requisito 4
-// Para entrada com dois nomes, retornar os nomes separados com "e". Por exemplo para ["Maria, "Nina"], retornar "Olá, Maria e Nina".
+// Requisito 6 - Separar nomes gritados em outra saudação. Por exemplo para ["Maria", "LÚCIA", "Nina"] retornar "Olá Maria e Nina. E OLÁ, LÚCIA!!!"
 
-// Requisito 5
-// Para entrada com mais de dois nomes, separar os nomes com vírgula e o último com "e".
+// Requisito 7 - Se algum dos nomes incluir vírgula, separe e trate como nomes separados. Por exemplo para ["Maria, Lúcia", "Nina"], retornar "Olá, Maria, Lúcia e Nina".
 
-// Requisito 6
-// Separar nomes gritados em outra saudação. Por exemplo para ["Maria", "LÚCIA", "Nina"] retornar "Olá Maria e Nina. E OLÁ, LÚCIA!!!"
-// Requisito 7
-// Se algum dos nomes incluir vírgula, separe e trate como nomes separados. Por exemplo para ["Maria, Lúcia", "Nina"], retornar "Olá, Maria, Lúcia e Nina".
-
-// Requisito 8
-// Permita que a entrada informe vírgulas intencionalmente usando caracteres de escape. Isso pode ser feito da mesma forma que em arquivos CSV, com aspas duplas em volta da entrada. Por exemplo para ["Maria", "\"Nina, Lúcia\""], retornar "Olá, Maria e Nina, Lúcia".
+// Requisito 8 - Permita que a entrada informe vírgulas intencionalmente usando caracteres de escape. Isso pode ser feito da mesma forma que em arquivos CSV, com aspas duplas em volta da entrada. Por exemplo para ["Maria", "\"Nina, Lúcia\""], retornar "Olá, Maria e Nina, Lúcia".
