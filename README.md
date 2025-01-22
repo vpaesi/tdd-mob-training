@@ -6,21 +6,21 @@ Usando TDD, escreva uma função pura para cumprimentar o usuário, evoluindo o 
 
 ### Requisitos:
 
-1 - Interpolar o nome com uma saudação simples. Por exemplo, quando o nome é "Maria", o método retorna "Olá, Maria".
+1 - Interpolar o nome com uma saudação simples.
 
 2 - Caso o nome não esteja preenchido, retornar "Olá, você aí".
 
-3 - Se o nome for gritado (em maiúsculas), retornar gritando também "OLÁ, MARIA!!!".
+3 - Se o nome for gritado (em maiúsculas), retornar gritando também.
 
-4 - Para entrada com dois nomes, retornar os nomes separados com "e". Por exemplo para ["Maria, "Nina"], retornar "Olá, Maria e Nina".
+4 - Para entrada com dois nomes, retornar os nomes separados com "e".
 
 5 - Para entrada com mais de dois nomes, separar os nomes com vírgula e o último com "e".
 
-6 - Separar nomes gritados em outra saudação. Por exemplo para ["Maria", "LÚCIA", "Nina"] retornar "Olá Maria e Nina. E OLÁ, LÚCIA!!!"
+6 - Separar nomes gritados em outra saudação.
 
-7 - Se algum dos nomes incluir vírgula, separe e trate como nomes separados. Por exemplo para ["Maria, Lúcia", "Nina"], retornar "Olá, Maria, Lúcia e Nina".
+7 - Se algum dos nomes incluir vírgula, separe e trate como nomes separados.
 
-8 - Permita que a entrada informe vírgulas intencionalmente usando caracteres de escape. Isso pode ser feito da mesma forma que em arquivos CSV, com aspas duplas em volta da entrada. Por exemplo para ["Maria", "\"Nina, Lúcia\""], retornar "Olá, Maria e Nina, Lúcia".
+8 - Permita que a entrada informe vírgulas intencionalmente usando caracteres de escape. Isso pode ser feito da mesma forma que em arquivos CSV, com aspas duplas em volta da entrada.
 
 Fonte: https://github.com/testdouble/contributing-tests/wiki/Greeting-Kata
 
