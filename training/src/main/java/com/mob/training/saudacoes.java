@@ -1,5 +1,8 @@
 package com.mob.training;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Saudacoes {
 
     public String saudacao(String stringOla, String nome) {
@@ -8,37 +11,58 @@ public class Saudacoes {
         // Caso o nome não esteja preenchido, retornar "Olá, você aí!"
         if (nome == null || nome.isEmpty()) {
             return stringOla + "você aí!";
-        } 
-        
+        }
+
         // Caso o nome esteja em maiúsculas, retornar "OLÁ, NOME!!!"
-        else if (nome.equals(nome.toUpperCase())) {
+        if (nome.equals(nome.toUpperCase())) {
             return stringOla.toUpperCase() + nome + "!!!";
-        } 
-        
-        // Caso o nome contenha mais de uma pessoa separada por vírgula
-        else if (nome.contains(",")) {
-            String[] nomes = nome.split(","); // Dividir a string em nomes
-            StringBuilder saudacaoFinal = new StringBuilder(stringOla);
-            int tamanho = nomes.length;
+        }
 
-            for (int i = 0; i < tamanho; i++) {
-                String nomeAtual = nomes[i].trim(); // Remover espaços extras
+        List<String> nomes = new ArrayList<>();
+        boolean dentroDeAspas = false;
+        StringBuilder nomeAtual = new StringBuilder();
 
-                if (i == tamanho - 1) {
-                    saudacaoFinal.append("e ").append(nomeAtual);
-                } else if (i ==  tamanho - 2){
-                    saudacaoFinal.append(nomeAtual).append(" ");
-                }
-                else {
-                    saudacaoFinal.append(nomeAtual).append(", ");
-                }
+        // Tratamento de caracteres para aspas
+        for (char caractereDoNome : nome.toCharArray()) {
+            if (caractereDoNome == '"') {
+                dentroDeAspas = !dentroDeAspas;
+            } else if (caractereDoNome == ',' && !dentroDeAspas) {
+                nomes.add(nomeAtual.toString().trim());
+                nomeAtual.setLength(0);
+            } else {
+                nomeAtual.append(caractereDoNome);
             }
-            return saudacaoFinal.toString().trim();
-        } 
-        
-        // Caso contrário, retornar a saudação simples
-        else {
-            return stringOla + nome;
+        }
+        if (nomeAtual.length() > 0) {
+            nomes.add(nomeAtual.toString().trim());
+        }
+
+        StringBuilder saudacaoNormal = new StringBuilder(stringOla);
+        StringBuilder saudacaoGritada = new StringBuilder("E OLÁ, ");
+        boolean temNomeGritado = false;
+
+        // Tratamento de nomes normais e gritados
+        for (int i = 0; i < nomes.size(); i++) {
+            String nomeProcessado = nomes.get(i).trim();
+
+            if (nomeProcessado.equals(nomeProcessado.toUpperCase())) {
+                if (temNomeGritado) {
+                    saudacaoGritada.append(", ");
+                }
+                saudacaoGritada.append(nomeProcessado).append("!!!");
+                temNomeGritado = true;
+            } else {
+                if (saudacaoNormal.length() > stringOla.length()) {
+                    saudacaoNormal.append(i == nomes.size() - 1 ? " e " : ", ");
+                }
+                saudacaoNormal.append(nomeProcessado.replace("\"", ""));
+            }
+        }
+
+        if (temNomeGritado) {
+            return saudacaoNormal.toString().trim() + ". " + saudacaoGritada.toString();
+        } else {
+            return saudacaoNormal.toString().trim();
         }
     }
 }
